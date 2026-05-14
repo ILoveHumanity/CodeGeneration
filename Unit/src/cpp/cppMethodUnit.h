@@ -1,9 +1,10 @@
-#ifndef METHODUNIT_H
-#define METHODUNIT_H
+#ifndef CPPMETHODUNIT_H
+#define CPPMETHODUNIT_H
 
-#include <unit.h>
+#include "unit.h"
+#include <vector>
 
-class MethodUnit : public Unit
+class CppMethodUnit : public Unit
 {
 public:
     enum Modifier {
@@ -12,7 +13,7 @@ public:
         VIRTUAL = 1 << 2
     };
 public:
-    MethodUnit( const std::string& name, const std::string& returnType, Flags
+    CppMethodUnit( const std::string& name, const std::string& returnType, Flags
                                                                            flags ) :
         m_name( name ), m_returnType( returnType ), m_flags( flags ) { }
     void add( const std::shared_ptr< Unit >& unit, Flags /* flags */ = 0 ) {
@@ -44,4 +45,4 @@ private:
     std::vector< std::shared_ptr< Unit > > m_body;
 };
 
-#endif // METHODUNIT_H
+#endif // CPPMETHODUNIT_H
