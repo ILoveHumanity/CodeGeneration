@@ -27,4 +27,6 @@ HEADERS += \
 INCLUDEPATH += \
         Unit/src/ \
         Unit/src/cpp/ \
+        Unit/src/csh/ \
+        Unit/src/java/ \
         Unit/
