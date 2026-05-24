@@ -1,8 +1,6 @@
 #include "cppMethodUnit.h"
 
-CppMethodUnit::CppMethodUnit( const std::string& name, const std::string& returnType, Flags flags )
-    : m_name( name ), m_returnType( returnType ), m_flags( flags ) {
-}
+CppMethodUnit::CppMethodUnit( const std::string& name, const std::string& returnType, Flags flags ) : AbstractMethodUnit(name, returnType, flags) {}
 
 void CppMethodUnit::add( const std::shared_ptr< Unit >& unit, Flags /* flags */ ) {
     m_body.push_back( unit );

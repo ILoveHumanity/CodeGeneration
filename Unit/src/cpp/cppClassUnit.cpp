@@ -2,7 +2,7 @@
 
 const std::vector< std::string > CppClassUnit::ACCESS_MODIFIERS = { "public", "protected", "private" };
 
-CppClassUnit::CppClassUnit( const std::string& name ) : m_name( name ) {
+CppClassUnit::CppClassUnit( const std::string& name ) : AbstractClassUnit( name ) {
     m_fields.resize( ACCESS_MODIFIERS.size() );
 }
 
