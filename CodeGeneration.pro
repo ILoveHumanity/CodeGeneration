@@ -13,6 +13,7 @@ SOURCES += \
         Unit/src/cpp/cppClassUnit.cpp \
         Unit/src/cpp/cppMethodUnit.cpp \
         Unit/src/cpp/cppPrintOperatorUnit.cpp \
+        Unit/src/cpp/cppUnitFactory.cpp \
         Unit/src/unit.cpp \
         main.cpp
 
@@ -22,12 +23,14 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    Unit/AbstractUnitFactory.h \
     Unit/src/abstract/AbstractClassUnit.h \
     Unit/src/abstract/AbstractMethodUnit.h \
     Unit/src/abstract/AbstractPrintOperatorUnit.h \
     Unit/src/cpp/cppClassUnit.h \
     Unit/src/cpp/cppMethodUnit.h \
     Unit/src/cpp/cppPrintOperatorUnit.h \
+    Unit/src/cpp/cppUnitFactory.h \
     Unit/unit.h
 
 INCLUDEPATH += \

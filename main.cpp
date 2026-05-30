@@ -1,37 +1,28 @@
 #include <QCoreApplication>
+#include "AbstractUnitFactory.h"
+#include "cppUnitFactory.h"
+#include <iostream>
 #include "cppClassUnit.h"
 #include "cppMethodUnit.h"
 #include "cppPrintOperatorUnit.h"
-#include <iostream>
 
-
-std::string generateProgram() {
-    CppClassUnit myClass( "MyClass" );
-    myClass.add(
-        std::make_shared< CppMethodUnit >( "testFunc1", "void", 0 ),
-        CppClassUnit::PUBLIC
-        );
-    myClass.add(
-        std::make_shared< CppMethodUnit >( "testFunc2", "void", CppMethodUnit::STATIC ),
-        CppClassUnit::PRIVATE
-        );
-    myClass.add(
-        std::make_shared< CppMethodUnit >( "testFunc3", "void", CppMethodUnit::VIRTUAL |
-                                                              CppMethodUnit::CONST ),
-        CppClassUnit::PUBLIC
-        );
-    auto method = std::make_shared< CppMethodUnit >( "testFunc4", "void",
-                                               CppMethodUnit::STATIC );
-    method->add( std::make_shared< CppPrintOperatorUnit >( R"(Hello, world!\n)" ) );
-    myClass.add( method, CppClassUnit::PROTECTED );
-    return myClass.compile();
+std::string generateProgram(const AbstractUnitFactory& factory) {
+    auto myClass = factory.createClassUnit( "MyClass" );
+    myClass->add(factory.createMethodUnit( "testFunc1", "void", 0 ), CppClassUnit::PUBLIC);
+    myClass->add(factory.createMethodUnit( "testFunc2", "void", CppMethodUnit::STATIC ), CppClassUnit::PRIVATE );
+    myClass->add(factory.createMethodUnit( "testFunc3", "void", CppMethodUnit::VIRTUAL | CppMethodUnit::CONST ), CppClassUnit::PUBLIC );
+    auto method = factory.createMethodUnit( "testFunc4", "void", CppMethodUnit::STATIC );
+    method->add( factory.createPrintOperatorUnit( R"(Hello, world!\n)" ) );
+    myClass->add( method, CppClassUnit::PROTECTED );
+    return myClass->compile();
 }
 
 int main(int argc, char *argv[])
 {
     //QCoreApplication a(argc, argv);
     try {
-        std::cout << generateProgram() << std::endl;
+        CppUnitFactory cppFactory;
+        std::cout << generateProgram(cppFactory) << std::endl;
     } catch (...) {
         std::cerr << "Error: unknown exception\n";
         return 1;

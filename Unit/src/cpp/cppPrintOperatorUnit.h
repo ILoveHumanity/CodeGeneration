@@ -10,8 +10,6 @@ public:
     explicit CppPrintOperatorUnit( const std::string& text );
     ~CppPrintOperatorUnit() = default;
     std::string compile( unsigned int level = 0 ) const override;
-private:
-    std::string m_text;
 };
 
 #endif // CPPPRINTOPERATORUNIT_H
