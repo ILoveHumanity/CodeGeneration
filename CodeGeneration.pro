@@ -24,6 +24,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     Unit/AbstractUnitFactory.h \
+    Unit/Modifiers.h \
     Unit/src/abstract/AbstractClassUnit.h \
     Unit/src/abstract/AbstractMethodUnit.h \
     Unit/src/abstract/AbstractPrintOperatorUnit.h \

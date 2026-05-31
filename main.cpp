@@ -1,19 +1,18 @@
 #include <QCoreApplication>
 #include "AbstractUnitFactory.h"
 #include "cppUnitFactory.h"
+#include "Modifiers.h"
 #include <iostream>
-#include "cppClassUnit.h"
-#include "cppMethodUnit.h"
-#include "cppPrintOperatorUnit.h"
+
 
 std::string generateProgram(const AbstractUnitFactory& factory) {
     auto myClass = factory.createClassUnit( "MyClass" );
-    myClass->add(factory.createMethodUnit( "testFunc1", "void", 0 ), CppClassUnit::PUBLIC);
-    myClass->add(factory.createMethodUnit( "testFunc2", "void", CppMethodUnit::STATIC ), CppClassUnit::PRIVATE );
-    myClass->add(factory.createMethodUnit( "testFunc3", "void", CppMethodUnit::VIRTUAL | CppMethodUnit::CONST ), CppClassUnit::PUBLIC );
-    auto method = factory.createMethodUnit( "testFunc4", "void", CppMethodUnit::STATIC );
+    myClass->add(factory.createMethodUnit( "testFunc1", "void", 0 ), (Unit::Flags)AccessModifier::PUBLIC );
+    myClass->add(factory.createMethodUnit( "testFunc2", "void", (Unit::Flags)MethodModifier::STATIC ), (Unit::Flags)AccessModifier::PRIVATE );
+    myClass->add(factory.createMethodUnit( "testFunc3", "void", (Unit::Flags)MethodModifier::VIRTUAL | (Unit::Flags)MethodModifier::CONST ), (Unit::Flags)AccessModifier::PUBLIC );
+    auto method = factory.createMethodUnit( "testFunc4", "void", (Unit::Flags)MethodModifier::STATIC );
     method->add( factory.createPrintOperatorUnit( R"(Hello, world!\n)" ) );
-    myClass->add( method, CppClassUnit::PROTECTED );
+    myClass->add( method, (Unit::Flags)AccessModifier::PROTECTED );
     return myClass->compile();
 }
 

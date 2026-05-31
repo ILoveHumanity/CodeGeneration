@@ -17,7 +17,7 @@ public:
 
     virtual std::string compile(unsigned int level = 0) const override = 0;
 
-    using Unit::add;
+    void add( const std::shared_ptr< Unit >& unit, Flags flags = 0 ) override;
 
 protected:
 

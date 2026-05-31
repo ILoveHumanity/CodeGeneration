@@ -16,8 +16,6 @@ public:
 
     virtual std::string compile( unsigned int level = 0 ) const = 0;
 
-    using Unit::add;
-
 protected:
     std::string m_name; // Имя класса
 };

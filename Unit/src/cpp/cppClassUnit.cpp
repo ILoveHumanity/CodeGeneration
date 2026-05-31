@@ -1,4 +1,18 @@
 #include "cppClassUnit.h"
+#include "Modifiers.h"
+
+int toCppAccessModifiersID(Unit::Flags flags){
+    switch ((AccessModifier)flags) {
+    case AccessModifier::PUBLIC:
+        return 0;
+    case AccessModifier::PROTECTED:
+        return 1;
+    case AccessModifier::PRIVATE:
+        return 2;
+    default:
+        return -1;
+    }
+}
 
 const std::vector< std::string > CppClassUnit::ACCESS_MODIFIERS = { "public", "protected", "private" };
 
@@ -8,9 +22,9 @@ CppClassUnit::CppClassUnit( const std::string& name ) : AbstractClassUnit( name 
 
 void CppClassUnit::add( const std::shared_ptr< Unit >& unit, Flags flags )
 {
-    int accessModifier = PRIVATE;
-    if( flags < ACCESS_MODIFIERS.size() ) {
-        accessModifier = flags;
+    int accessModifier = toCppAccessModifiersID((Unit::Flags)AccessModifier::PRIVATE);
+    if( flags == (flags & cppAccessModifierMask)) {
+        accessModifier = toCppAccessModifiersID(flags);
     }
     m_fields[ accessModifier ].push_back( unit );
 }

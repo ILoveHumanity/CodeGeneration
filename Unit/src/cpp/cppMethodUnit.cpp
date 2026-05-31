@@ -1,21 +1,18 @@
 #include "cppMethodUnit.h"
+#include "Modifiers.h"
 
 CppMethodUnit::CppMethodUnit( const std::string& name, const std::string& returnType, Flags flags ) : AbstractMethodUnit(name, returnType, flags) {}
 
-void CppMethodUnit::add( const std::shared_ptr< Unit >& unit, Flags /* flags */ ) {
-    m_body.push_back( unit );
-}
-
 std::string CppMethodUnit::compile( unsigned int level ) const {
     std::string result = generateShift( level );
-    if( m_flags & STATIC ) {
+    if( m_flags & (Unit::Flags)MethodModifier::STATIC ) {
         result += "static ";
-    } else if( m_flags & VIRTUAL ) {
+    } else if( m_flags & (Unit::Flags)MethodModifier::VIRTUAL ) {
         result += "virtual ";
     }
     result += m_returnType + " ";
     result += m_name + "()";
-    if( m_flags & CONST ) {
+    if( m_flags & (Unit::Flags)MethodModifier::CONST ) {
         result += " const";
     }
     result += " {\n";

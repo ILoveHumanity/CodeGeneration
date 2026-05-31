@@ -8,11 +8,6 @@
 class CppClassUnit : public AbstractClassUnit
 {
 public:
-    enum AccessModifier {
-        PUBLIC,
-        PROTECTED,
-        PRIVATE
-    };
     static const std::vector< std::string > ACCESS_MODIFIERS;
 public:
     explicit CppClassUnit( const std::string& name );

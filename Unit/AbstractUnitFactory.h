@@ -4,11 +4,9 @@
 #include <memory>
 #include <string>
 #include "unit.h"
-
-// Предварительные объявления, чтобы избежать циклических зависимостей в заголовках
-class AbstractClassUnit;
-class AbstractMethodUnit;
-class AbstractPrintOperatorUnit;
+#include "AbstractClassUnit.h"
+#include "AbstractMethodUnit.h"
+#include "AbstractPrintOperatorUnit.h"
 
 class AbstractUnitFactory {
 public:
