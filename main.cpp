@@ -7,12 +7,12 @@
 
 std::string generateProgram(const AbstractUnitFactory& factory) {
     auto myClass = factory.createClassUnit( "MyClass" );
-    myClass->add(factory.createMethodUnit( "testFunc1", "void", 0 ), (Unit::Flags)AccessModifier::PUBLIC );
-    myClass->add(factory.createMethodUnit( "testFunc2", "void", (Unit::Flags)MethodModifier::STATIC ), (Unit::Flags)AccessModifier::PRIVATE );
-    myClass->add(factory.createMethodUnit( "testFunc3", "void", (Unit::Flags)MethodModifier::VIRTUAL | (Unit::Flags)MethodModifier::CONST ), (Unit::Flags)AccessModifier::PUBLIC );
-    auto method = factory.createMethodUnit( "testFunc4", "void", (Unit::Flags)MethodModifier::STATIC );
+    myClass->add(factory.createMethodUnit( "testFunc1", "void", MethodModifier::UNDEFINED ), AccessModifier::PUBLIC );
+    myClass->add(factory.createMethodUnit( "testFunc2", "void", MethodModifier::STATIC ), AccessModifier::PRIVATE );
+    myClass->add(factory.createMethodUnit( "testFunc3", "void", MethodModifier::VIRTUAL | MethodModifier::CONST ), AccessModifier::PUBLIC );
+    auto method = factory.createMethodUnit( "testFunc4", "void", MethodModifier::STATIC );
     method->add( factory.createPrintOperatorUnit( R"(Hello, world!\n)" ) );
-    myClass->add( method, (Unit::Flags)AccessModifier::PROTECTED );
+    myClass->add( method, AccessModifier::PROTECTED );
     return myClass->compile();
 }
 

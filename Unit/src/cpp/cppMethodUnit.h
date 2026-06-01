@@ -9,7 +9,7 @@
 class CppMethodUnit : public AbstractMethodUnit
 {
 public:
-    CppMethodUnit( const std::string& name, const std::string& returnType, Flags flags );
+    CppMethodUnit( const std::string& name, const std::string& returnType, MethodModifier flags );
     ~CppMethodUnit() = default;
     std::string compile( unsigned int level = 0 ) const override;
 };

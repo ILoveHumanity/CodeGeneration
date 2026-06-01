@@ -7,7 +7,7 @@ std::shared_ptr<AbstractClassUnit> CppUnitFactory::createClassUnit(const std::st
     return std::make_shared<CppClassUnit>(name);
 }
 
-std::shared_ptr<AbstractMethodUnit> CppUnitFactory::createMethodUnit(const std::string& name, const std::string& returnType, Unit::Flags flags) const {
+std::shared_ptr<AbstractMethodUnit> CppUnitFactory::createMethodUnit(const std::string& name, const std::string& returnType, MethodModifier flags) const {
     return std::make_shared<CppMethodUnit>(name, returnType, flags);
 }
 

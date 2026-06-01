@@ -1,8 +1,9 @@
 #include "cppClassUnit.h"
 #include "Modifiers.h"
+#include <stdexcept>
 
-int toCppAccessModifiersID(Unit::Flags flags){
-    switch ((AccessModifier)flags) {
+int toCppAccessModifiersID(AccessModifier flags){
+    switch (flags) {
     case AccessModifier::PUBLIC:
         return 0;
     case AccessModifier::PROTECTED:
@@ -10,7 +11,7 @@ int toCppAccessModifiersID(Unit::Flags flags){
     case AccessModifier::PRIVATE:
         return 2;
     default:
-        return -1;
+        throw std::invalid_argument("Unsupported C++ class access modifier: ");
     }
 }
 
@@ -20,12 +21,9 @@ CppClassUnit::CppClassUnit( const std::string& name ) : AbstractClassUnit( name 
     m_fields.resize( ACCESS_MODIFIERS.size() );
 }
 
-void CppClassUnit::add( const std::shared_ptr< Unit >& unit, Flags flags )
+void CppClassUnit::add( const std::shared_ptr< Unit >& unit, AccessModifier flags )
 {
-    int accessModifier = toCppAccessModifiersID((Unit::Flags)AccessModifier::PRIVATE);
-    if( flags == (flags & cppAccessModifierMask)) {
-        accessModifier = toCppAccessModifiersID(flags);
-    }
+    int accessModifier = toCppAccessModifiersID(flags);
     m_fields[ accessModifier ].push_back( unit );
 }
 
