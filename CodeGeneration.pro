@@ -18,6 +18,10 @@ SOURCES += \
         Unit/src/csharp/csharpMethodUnit.cpp \
         Unit/src/csharp/csharpPrintOperatorUnit.cpp \
         Unit/src/csharp/csharpUnitFactory.cpp \
+        Unit/src/java/javaClassUnit.cpp \
+        Unit/src/java/javaMethodUnit.cpp \
+        Unit/src/java/javaPrintOperatorUnit.cpp \
+        Unit/src/java/javaUnitFactory.cpp \
         Unit/src/unit.cpp \
         main.cpp
 
@@ -40,6 +44,10 @@ HEADERS += \
     Unit/src/csharp/csharpMethodUnit.h \
     Unit/src/csharp/csharpPrintOperatorUnit.h \
     Unit/src/csharp/csharpUnitFactory.h \
+    Unit/src/java/javaClassUnit.h \
+    Unit/src/java/javaMethodUnit.h \
+    Unit/src/java/javaPrintOperatorUnit.h \
+    Unit/src/java/javaUnitFactory.h \
     Unit/unit.h
 
 INCLUDEPATH += \
