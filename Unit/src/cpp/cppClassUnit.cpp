@@ -10,8 +10,10 @@ int toCppAccessModifiersID(AccessModifier flags){
         return 1;
     case AccessModifier::PRIVATE:
         return 2;
+    case AccessModifier::UNDEFINED:
+        return 2;
     default:
-        throw std::invalid_argument("Unsupported C++ class access modifier: ");
+        throw std::invalid_argument("Unsupported C++ class access modifier.");
     }
 }
 
