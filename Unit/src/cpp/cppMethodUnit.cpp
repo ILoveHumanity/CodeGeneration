@@ -1,23 +1,21 @@
 #include "cppMethodUnit.h"
+#include "Modifiers.h"
 
-CppMethodUnit::CppMethodUnit( const std::string& name, const std::string& returnType, Flags flags )
-    : m_name( name ), m_returnType( returnType ), m_flags( flags ) {
-}
-
-void CppMethodUnit::add( const std::shared_ptr< Unit >& unit, Flags /* flags */ ) {
-    m_body.push_back( unit );
-}
+CppMethodUnit::CppMethodUnit( const std::string& name, const std::string& returnType, MethodModifier flags ) : AbstractMethodUnit(name, returnType, flags) {}
 
 std::string CppMethodUnit::compile( unsigned int level ) const {
+    if( m_flags != (m_flags & (MethodModifier::STATIC | MethodModifier::VIRTUAL | MethodModifier::CONST)) ) {
+        throw std::invalid_argument("Unsupported C++ method modifier.");
+    }
     std::string result = generateShift( level );
-    if( m_flags & STATIC ) {
+    if( (m_flags & MethodModifier::STATIC) == MethodModifier::STATIC ) {
         result += "static ";
-    } else if( m_flags & VIRTUAL ) {
+    } else if( (m_flags & MethodModifier::VIRTUAL) == MethodModifier::VIRTUAL ) {
         result += "virtual ";
     }
     result += m_returnType + " ";
     result += m_name + "()";
-    if( m_flags & CONST ) {
+    if( (m_flags & MethodModifier::CONST) == MethodModifier::CONST ) {
         result += " const";
     }
     result += " {\n";
