@@ -5,19 +5,24 @@
 #include <string>
 #include <memory>
 
-// Абстрактный базовый класс для представления оператора/выражения печати на любом языке
+/// @brief Абстрактный базовый класс для представления оператора печати на любом языке
 class AbstractPrintOperatorUnit : public Unit
 {
 public:
+    /// @brief Конструктор.
+    /// @param[in] text Текст для печати.
     explicit AbstractPrintOperatorUnit(const std::string& text);
 
-    // Виртуальный деструктор
+    /// @brief Виртуальный деструктор
     virtual ~AbstractPrintOperatorUnit() = default;
 
+    /// @brief Формирует текстовое представление оператора печати.
+    /// @param[in] level Уровень отступа.
+    /// @return Текст оператора печати.
     virtual std::string compile(unsigned int level = 0) const override = 0;
 
 protected:
-    std::string m_text; // Текст для печати
+    std::string m_text; ///< Текст для печати
 };
 
 #endif // ABSTRACTPRINTOPERATORUNIT_H
