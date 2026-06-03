@@ -5,13 +5,13 @@
 
 enum class AccessModifier : Unit::Flags {
     UNDEFINED = 0,
-    PUBLIC = 1 << 0,
-    PROTECTED = 1 << 1,
-    PRIVATE = 1 << 2,
-    INTERNAL = 1 << 3, // C#
-    PROTECTED_INTERNAL = PROTECTED | INTERNAL, // C#
-    PRIVATE_PROTECTED = PRIVATE | PROTECTED, // C#
-    FILE = 1 << 4 // C#
+    PUBLIC = 1,
+    PROTECTED = 2,
+    PRIVATE = 3,
+    INTERNAL = 4, // C#
+    PROTECTED_INTERNAL = 5, // C#
+    PRIVATE_PROTECTED = 6, // C#
+    FILE = 7 // C#
 };
 
 enum class MethodModifier : Unit::Flags {
@@ -22,13 +22,13 @@ enum class MethodModifier : Unit::Flags {
 };
 
 /// @brief Побитовое ИЛИ.
-inline constexpr MethodModifier operator|(MethodModifier a, MethodModifier b) noexcept
+inline MethodModifier operator|(MethodModifier a, MethodModifier b) noexcept
 {
     return (MethodModifier)((Unit::Flags)a | (Unit::Flags)b);
 }
 
 /// @brief Побитовое И.
-inline constexpr MethodModifier operator&(MethodModifier a, MethodModifier b) noexcept
+inline MethodModifier operator&(MethodModifier a, MethodModifier b) noexcept
 {
     return (MethodModifier)((Unit::Flags)a & (Unit::Flags)b);
 }
